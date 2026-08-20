@@ -192,6 +192,16 @@ input:focus, textarea:focus { outline: 2px solid #bfdbfe; border-color: var(--pr
 
 input[type="file"] { margin-top: 8px; font-size: .85rem; }
 
+#region-select {
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: .85rem;
+  background: #fff;
+  color: var(--text);
+}
+
 .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
 
 button {

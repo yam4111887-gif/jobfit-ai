@@ -18,6 +18,7 @@ const I18N = {
     "btn.tailor": "客製履歷",
     "btn.interview": "模擬面試題",
     "btn.ats": "ATS 格式健檢",
+    "btn.redflag": "職缺防詐檢查",
     "app.copy": "複製結果",
     "app.copied": "✅ 已複製",
     "app.disclaimer": "履歷只存在你的瀏覽器，僅送至你自行設定的 API。本工具不爬取任何求職網站。AI 建議請自行核實，切勿虛構經歷。",
@@ -52,6 +53,8 @@ const I18N = {
     "task.tailor": "履歷客製",
     "task.interview": "模擬面試題",
     "task.ats": "ATS 健檢",
+    "task.redflag": "職缺防詐檢查",
+    "ui.redflagNoJd": "防詐檢查需要先貼上職缺描述（JD）。",
   },
   en: {
     "app.name": "Job Assistant",
@@ -66,6 +69,7 @@ const I18N = {
     "btn.tailor": "Tailor Resume",
     "btn.interview": "Mock Interview",
     "btn.ats": "ATS Format Check",
+    "btn.redflag": "Job Scam Check",
     "app.copy": "Copy result",
     "app.copied": "✅ Copied",
     "app.disclaimer": "Your resume stays in your browser and is only sent to the API you configure. This tool never scrapes job boards. Verify AI suggestions yourself — never fabricate experience.",
@@ -100,6 +104,8 @@ const I18N = {
     "task.tailor": "Resume Tailoring",
     "task.interview": "Mock Interview",
     "task.ats": "ATS Check",
+    "task.redflag": "Job Scam Check",
+    "ui.redflagNoJd": "The scam check needs a job description (JD) first.",
   },
 };
 
@@ -214,6 +220,8 @@ const TASKS = {
 （列點，每點附具體補強建議：能用什麼經歷、作品或證照補）
 ## 關鍵字建議
 （職缺重視但履歷完全沒出現的關鍵字，用表格：關鍵字 | 履歷中對應的證據或補法）
+## 中英關鍵字對照
+（僅當職缺與履歷的主要語言不同時輸出。表格：職缺關鍵字（原文）| 對應的另一語言慣用寫法 | 履歷是否已涵蓋（兩種語言的寫法都要檢查））
 ## 下一步建議
 （3 點內，可執行的行動）`,
       en: `Analyze how well the resume matches the job description. Output structure:
@@ -225,6 +233,8 @@ const TASKS = {
 (bullets; for each, a concrete fix: which experience, project, or certificate to leverage)
 ## Keyword Suggestions
 (keywords the JD cares about but the resume never mentions — table: Keyword | Evidence in resume or how to add it)
+## Cross-lingual Keyword Table
+(only when the JD and resume use different primary languages. Table: JD keyword (original) | Equivalent wording in the resume's language | Covered in resume? — check BOTH language forms)
 ## Next Steps
 (max 3 actionable items)`,
     },
@@ -300,6 +310,8 @@ const els = {
   btnTailor: $("btn-tailor"),
   btnInterview: $("btn-interview"),
   btnAts: $("btn-ats"),
+  btnRedflag: $("btn-redflag"),
+  regionSelect: $("region-select"),
   result: $("result"),
   resultTitle: $("result-title"),
   resultContent: $("result-content"),
@@ -447,6 +459,18 @@ function runAtsCheck() {
     ? "Note: ATS rejections are mostly about missing qualifications and keywords, not formatting. A perfect format score doesn't guarantee passing — use \"📊 Analyze Match\" for content-level analysis."
     : "說明：ATS 刷掉履歷的主因是資歷不符與關鍵字不足，格式只佔少數。格式滿分不代表一定通過——內容匹配請再用「📊 分析匹配度」深入分析。"}\n`;
 
+  /* 個資與偏見提醒（建議性質，併在 ATS 報告後） */
+  if (typeof RedFlagChecker !== "undefined") {
+    const bias = RedFlagChecker.scanBias(resume, lang);
+    if (bias.found.length) {
+      md += `\n### ${lang === "en" ? "Privacy & bias notes" : "個資與偏見提醒"}\n`;
+      for (const f of bias.found) {
+        md += `- ${f.label} — ${lang === "en" ? "consider removing" : "可考慮移除"}\n`;
+      }
+      md += `\n${bias.note[lang === "en" ? "en" : "zh"]}\n`;
+    }
+  }
+
   els.result.hidden = false;
   els.resultTitle.textContent = `${t("task.ats")} — ${els.jobTitle.value.trim() || t("history.unnamed")}`;
   els.resultContent.classList.remove("loading");
@@ -465,12 +489,76 @@ function runAtsCheck() {
   });
 }
 
+/* ---------- 職缺防詐檢查（本機運算，不用 API） ---------- */
+
+function runRedflagCheck() {
+  const jd = els.jd.value.trim();
+  if (!jd) {
+    alert(t("ui.redflagNoJd"));
+    return;
+  }
+  const lang = loadLang();
+  const zh = lang !== "en";
+  const region = els.regionSelect ? els.regionSelect.value : "auto";
+  const report = RedFlagChecker.scanRedFlags(jd, region);
+
+  const reds = report.signals.filter((s) => s.level === "red").length;
+  const yellows = report.signals.filter((s) => s.level === "yellow").length;
+
+  let md = zh
+    ? `## 風險訊號：🔴 高風險 ${reds} 個／🟡 中風險 ${yellows} 個（適用地區：${report.regionLabel}）\n\n`
+    : `## Risk Signals: ${reds} high / ${yellows} medium (region: ${report.regionLabel})\n\n`;
+
+  if (!report.signals.length) {
+    md += zh
+      ? "未發現明顯風險訊號。**不代表沒有風險**——冒名職缺無法從文字辨識，仍建議做基本查證。\n\n"
+      : "No obvious risk signals found. **This does not mean zero risk** — cloned postings can't be detected from text. Basic verification is still advised.\n\n";
+  } else {
+    md += zh ? "| 訊號 | 級別 | 說明 |\n|---|---|---|\n" : "| Signal | Level | Why it matters |\n|---|---|---|\n";
+    for (const s of report.signals) {
+      const icon = s.level === "red" ? "🔴" : s.level === "yellow" ? "🟡" : "🔵";
+      const level = s.level === "red" ? (zh ? "高" : "High") : s.level === "yellow" ? (zh ? "中" : "Medium") : zh ? "資訊" : "Info";
+      md += `| ${icon} ${s.title} | ${level} | ${s.why.replace(/\|/g, "／")} |\n`;
+    }
+    md += "\n";
+  }
+
+  md += zh ? `### ${report.regionLabel}官方依據\n${report.legal}\n\n` : `### Official basis (${report.regionLabel})\n${report.legal}\n\n`;
+  md += zh ? "### 查證管道\n" : "### Verify via\n";
+  for (const l of report.links) md += `- [${l.label}](${l.url})\n`;
+  md += `\n---\n${report.disclaimer[zh ? "zh" : "en"]}\n`;
+
+  els.result.hidden = false;
+  els.resultTitle.textContent = `${t("task.redflag")} — ${els.jobTitle.value.trim() || t("history.unnamed")}`;
+  els.resultContent.classList.remove("loading");
+  els.resultContent.innerHTML = renderMarkdown(md);
+  els.result.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  addHistory({
+    id: Date.now(),
+    ts: new Date().toISOString(),
+    action: t("task.redflag"),
+    jobTitle: els.jobTitle.value.trim() || t("history.unnamed"),
+    score: null,
+    jd,
+    resume: els.resume.value.trim(),
+    output: md,
+  });
+}
+
 /* ---------- 事件繫結 ---------- */
 
 els.btnAnalyze.addEventListener("click", () => runTask("analyze"));
 els.btnTailor.addEventListener("click", () => runTask("tailor"));
 els.btnInterview.addEventListener("click", () => runTask("interview"));
 els.btnAts.addEventListener("click", () => runAtsCheck());
+els.btnRedflag.addEventListener("click", () => runRedflagCheck());
+if (els.regionSelect) {
+  els.regionSelect.value = localStorage.getItem("jobfit-region") || "auto";
+  els.regionSelect.addEventListener("change", () => {
+    localStorage.setItem("jobfit-region", els.regionSelect.value);
+  });
+}
 
 /* 語言切換：index 的切換器是連到 /en/ 的連結（由導覽處理）；僅按鈕形式時才就地切換 */
 if (els.btnLang && els.btnLang.tagName === "BUTTON") {
