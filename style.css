@@ -287,6 +287,48 @@ footer {
   #history-panel { position: static; order: 2; }
 }
 
+/* ---------- 儀表板 ---------- */
+
+#dashboard { max-width: 1100px; margin: 40px auto; padding: 0 16px; }
+
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.dash-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.dash-wide { grid-column: 1 / -1; }
+.dash-block h3 { margin: 0 0 10px; font-size: 1rem; }
+
+.dash-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+
+.dash-controls input, .dash-controls select {
+  flex: 1;
+  min-width: 140px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: .88rem;
+}
+
+.compare-item { display: block; padding: 6px 8px; font-size: .87rem; border-radius: 6px; cursor: pointer; }
+.compare-item:hover { background: #f3f4f6; }
+.compare-item .meta { color: var(--muted); font-size: .78rem; margin-left: 6px; }
+
+.track-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.track-main { flex: 1; font-size: .9rem; }
+.track-main .meta { color: var(--muted); font-size: .75rem; margin-left: 8px; }
+.track-status { padding: 6px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: .82rem; font-family: inherit; }
+
+@media (max-width: 700px) {
+  .dash-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- 行銷區塊 ---------- */
 
 .hero-cta {

@@ -19,6 +19,8 @@ const I18N = {
     "btn.interview": "模擬面試題",
     "btn.ats": "ATS 格式健檢",
     "btn.redflag": "職缺防詐檢查",
+    "btn.coverletter": "求職信",
+    "btn.export": "匯出 PDF",
     "app.copy": "複製結果",
     "app.copied": "✅ 已複製",
     "app.disclaimer": "履歷只存在你的瀏覽器，僅送至你自行設定的 API。本工具不爬取任何求職網站。AI 建議請自行核實，切勿虛構經歷。",
@@ -54,7 +56,28 @@ const I18N = {
     "task.interview": "模擬面試題",
     "task.ats": "ATS 健檢",
     "task.redflag": "職缺防詐檢查",
+    "task.coverletter": "求職信產生",
     "ui.redflagNoJd": "防詐檢查需要先貼上職缺描述（JD）。",
+    "ui.exportNoResume": "匯出前請先在履歷欄位貼上內容。",
+    "dash.title": "求職儀表板（資料一樣只存在你的瀏覽器）",
+    "dash.profiles": "履歷版本管理",
+    "dash.profilePh": "版本名稱，如：軟體工程師版",
+    "dash.profileSave": "儲存目前履歷為新版本",
+    "dash.profileLoad": "載入",
+    "dash.profileDelete": "刪除",
+    "dash.compare": "多職缺比較",
+    "dash.compareHint": "從分析記錄勾選 2-4 筆，以目前履歷輸入框的內容計算關鍵字覆蓋率與風險訊號。換不同履歷版本再按一次，可以看出哪份履歷對哪個職缺最有效。",
+    "dash.compareBtn": "比較選取的職缺",
+    "dash.track": "投遞追蹤",
+    "dash.trackCompany": "公司名稱",
+    "dash.trackTitle": "職缺名稱",
+    "dash.trackAdd": "新增",
+    "st.prep": "準備中",
+    "st.sent": "已投遞",
+    "st.interview": "面試中",
+    "st.offer": "Offer",
+    "st.rejected": "婉拒",
+    "st.noReply": "無回應",
   },
   en: {
     "app.name": "Job Assistant",
@@ -70,6 +93,8 @@ const I18N = {
     "btn.interview": "Mock Interview",
     "btn.ats": "ATS Format Check",
     "btn.redflag": "Job Scam Check",
+    "btn.coverletter": "Cover Letter",
+    "btn.export": "Export PDF",
     "app.copy": "Copy result",
     "app.copied": "✅ Copied",
     "app.disclaimer": "Your resume stays in your browser and is only sent to the API you configure. This tool never scrapes job boards. Verify AI suggestions yourself — never fabricate experience.",
@@ -105,7 +130,28 @@ const I18N = {
     "task.interview": "Mock Interview",
     "task.ats": "ATS Check",
     "task.redflag": "Job Scam Check",
+    "task.coverletter": "Cover Letter",
     "ui.redflagNoJd": "The scam check needs a job description (JD) first.",
+    "ui.exportNoResume": "Paste your resume first, then export.",
+    "dash.title": "Job Dashboard (data stays in your browser)",
+    "dash.profiles": "Resume Versions",
+    "dash.profilePh": "Version name, e.g., SWE version",
+    "dash.profileSave": "Save current resume as version",
+    "dash.profileLoad": "Load",
+    "dash.profileDelete": "Delete",
+    "dash.compare": "Multi-Job Comparison",
+    "dash.compareHint": "Check 2-4 history entries; coverage and risk are computed against the CURRENT resume box. Switch resume versions and re-run to see which resume fits which job best.",
+    "dash.compareBtn": "Compare selected jobs",
+    "dash.track": "Application Tracker",
+    "dash.trackCompany": "Company",
+    "dash.trackTitle": "Job title",
+    "dash.trackAdd": "Add",
+    "st.prep": "Preparing",
+    "st.sent": "Applied",
+    "st.interview": "Interviewing",
+    "st.offer": "Offer",
+    "st.rejected": "Declined",
+    "st.noReply": "No reply",
   },
 };
 
@@ -275,6 +321,21 @@ const TASKS = {
 (3 questions that show professionalism)`,
     },
   },
+  coverletter: {
+    labelKey: "task.coverletter",
+    instruction: {
+      zh: `請根據職缺與履歷撰寫求職信（Cover Letter）。規則：專業但不諄媚、總長 250-350 字、3-4 段；每一段都要引用履歷中的真實經歷來對應職缺的具體需求；絕不捏造任何經歷；結尾明確表達面試意願。如果職缺描述是英文，用英文寫；否則用繁體中文。輸出：
+## 求職信
+（可直接複製使用的完整內容）
+## 使用提醒
+（2 點：哪段最值得個人化、寄出前要替換的占位資訊如公司名）`,
+      en: `Write a cover letter based on the JD and resume. Rules: professional not sycophantic, 200-300 words, 3-4 paragraphs; every paragraph must cite a REAL experience from the resume mapped to a specific JD requirement; never fabricate; close with clear interview intent. If the JD is in Chinese, write in Traditional Chinese; otherwise English. Output:
+## Cover Letter
+(ready to copy)
+## Notes
+(2 bullets: which paragraph most needs personal touch; placeholders like company name to replace before sending)`,
+    },
+  },
 };
 
 function buildMessages(taskKey, jobTitle, jd, resume) {
@@ -311,6 +372,8 @@ const els = {
   btnInterview: $("btn-interview"),
   btnAts: $("btn-ats"),
   btnRedflag: $("btn-redflag"),
+  btnCoverletter: $("btn-coverletter"),
+  btnExport: $("btn-export"),
   regionSelect: $("region-select"),
   result: $("result"),
   resultTitle: $("result-title"),
@@ -546,6 +609,26 @@ function runRedflagCheck() {
   });
 }
 
+/* ---------- PDF 匯出（單欄 ATS 安全排版，瀏覽器列印） ---------- */
+
+function exportResumePdf() {
+  const text = els.resume.value.trim();
+  if (!text) {
+    alert(t("ui.exportNoResume"));
+    return;
+  }
+  const w = window.open("", "_blank");
+  if (!w) return;
+  const esc = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  w.document.write(`<!DOCTYPE html><html lang="${loadLang() === "en" ? "en" : "zh-Hant"}"><head><meta charset="UTF-8"><title>Resume — Resume Preflight</title><style>
+    body { font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif; max-width: 720px; margin: 40px auto; padding: 0 24px; line-height: 1.65; font-size: 14px; color: #111; }
+    pre { white-space: pre-wrap; font-family: inherit; }
+    @media print { body { margin: 0; } }
+  </style></head><body><pre>${esc}</pre>
+  <script>window.onload = function(){ setTimeout(function(){ window.print(); }, 200); }<\/script></body></html>`);
+  w.document.close();
+}
+
 /* ---------- 事件繫結 ---------- */
 
 els.btnAnalyze.addEventListener("click", () => runTask("analyze"));
@@ -553,6 +636,8 @@ els.btnTailor.addEventListener("click", () => runTask("tailor"));
 els.btnInterview.addEventListener("click", () => runTask("interview"));
 els.btnAts.addEventListener("click", () => runAtsCheck());
 els.btnRedflag.addEventListener("click", () => runRedflagCheck());
+els.btnCoverletter.addEventListener("click", () => runTask("coverletter"));
+els.btnExport.addEventListener("click", exportResumePdf);
 if (els.regionSelect) {
   els.regionSelect.value = localStorage.getItem("jobfit-region") || "auto";
   els.regionSelect.addEventListener("change", () => {

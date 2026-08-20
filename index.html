@@ -173,6 +173,8 @@
         <option value="us">美國</option>
         <option value="intl">其他地區</option>
       </select>
+      <button id="btn-coverletter"><svg class="ic"><use href="#icon-mail"/></svg><span data-i18n="btn.coverletter">求職信</span></button>
+      <button id="btn-export"><svg class="ic"><use href="#icon-file-up"/></svg><span data-i18n="btn.export">匯出 PDF</span></button>
     </div>
     <p class="disclaimer" data-i18n="app.disclaimer">履歷只存在你的瀏覽器，僅送至你自行設定的 API。本工具不爬取任何求職網站。AI 建議請自行核實，切勿虛構經歷。</p>
   </section>
@@ -186,16 +188,49 @@
   </section>
 </main>
 
+<section id="dashboard">
+  <h2 class="section-title" data-i18n="dash.title">求職儀表板（資料一樣只存在你的瀏覽器）</h2>
+  <div class="dash-grid">
+    <div class="dash-block">
+      <h3 data-i18n="dash.profiles">履歷版本管理</h3>
+      <div class="dash-controls">
+        <select id="profile-select"></select>
+        <input id="profile-name" data-i18n-ph="dash.profilePh" placeholder="版本名稱，如：軟體工程師版">
+      </div>
+      <div class="dash-controls">
+        <button id="btn-profile-save" class="primary small" data-i18n="dash.profileSave">儲存目前履歷為新版本</button>
+        <button id="btn-profile-load" class="ghost small" data-i18n="dash.profileLoad">載入</button>
+        <button id="btn-profile-delete" class="ghost small" data-i18n="dash.profileDelete">刪除</button>
+      </div>
+    </div>
+    <div class="dash-block">
+      <h3 data-i18n="dash.track">投遞追蹤</h3>
+      <div class="dash-controls">
+        <input id="track-company" data-i18n-ph="dash.trackCompany" placeholder="公司名稱">
+        <input id="track-title" data-i18n-ph="dash.trackTitle" placeholder="職缺名稱">
+        <button id="btn-track-add" class="primary small" data-i18n="dash.trackAdd">新增</button>
+      </div>
+      <div id="track-list"></div>
+    </div>
+    <div class="dash-block dash-wide">
+      <h3 data-i18n="dash.compare">多職缺比較</h3>
+      <p class="hint" data-i18n="dash.compareHint">從分析記錄勾選 2-4 筆，以目前履歷輸入框的內容計算關鍵字覆蓋率與風險訊號。換不同履歷版本再按一次，可以看出哪份履歷對哪個職缺最有效。</p>
+      <div id="compare-list"></div>
+      <button id="btn-compare" class="ghost small" data-i18n="dash.compareBtn">比較選取的職缺</button>
+      <div id="compare-result" class="markdown"></div>
+    </div>
+  </div>
+</section>
+
 <section id="pricing">
   <h2 class="section-title">簡單的定價</h2>
-  <p class="section-sub">免費版永久免費——因為它使用你自己的 API 金鑰，我們沒有伺服器成本，也不需要你的資料。</p>
+  <p class="section-sub">免費版永久免費且包含全部功能——因為它使用你自己的 API 金鑰，我們沒有伺服器成本。Pro 賣的是「免設定」與雲端便利，不是把免費版閹割再賣回你。</p>
   <div class="pricing-grid">
     <div class="price-card">
       <h3>免費版</h3>
       <div class="price">NT$0<span>/永久</span></div>
       <ul>
-        <li>全部四項功能</li>
-        <li>無限次使用</li>
+        <li>全部功能無限次（含防詐檢查與儀表板）</li>
         <li>資料只存在你的瀏覽器</li>
         <li>使用你自己的 API 金鑰（BYOK）</li>
       </ul>
@@ -204,14 +239,24 @@
     <div class="price-card featured">
       <div class="ribbon">規劃中</div>
       <h3>Pro 託管版</h3>
-      <div class="price">NT$129<span>/月</span></div>
+      <div class="price">US$9<span>/月</span></div>
       <ul>
-        <li>免設定、免 API 金鑰</li>
-        <li>AI 額度由我們提供</li>
-        <li>多職缺比較視圖</li>
-        <li>履歷版本管理</li>
+        <li>免設定、免 API 金鑰，打開即用</li>
+        <li>AI 額度由我們提供（GLM）</li>
+        <li>雲端同步的比較與追蹤</li>
+        <li>優先支援</li>
       </ul>
-      <button class="btn-outline" disabled>即將推出</button>
+      <a href="mailto:yassintw@gmail.com?subject=Pro%20waitlist" class="btn-outline">加入候補名單</a>
+    </div>
+    <div class="price-card">
+      <h3>求職衝刺包</h3>
+      <div class="price">US$14.99<span>/30 天</span></div>
+      <ul>
+        <li>30 天完整 Pro，一次付費</li>
+        <li>不自動續約——衝刺結束就結束</li>
+        <li>適合 1-2 個月的密集投遞期</li>
+      </ul>
+      <a href="mailto:yassintw@gmail.com?subject=Sprint%20waitlist" class="btn-outline">加入候補名單</a>
     </div>
     <div class="price-card">
       <h3>團隊與學校</h3>
@@ -221,7 +266,7 @@
         <li>就業博覽會活動方案</li>
         <li>企業內訓與白標授權</li>
       </ul>
-      <a href="mailto:yassintw@gmail.com" class="btn-outline">聯絡我們<svg class="ic"><use href="#icon-mail"/></svg></a>
+      <a href="mailto:yassintw@gmail.com?subject=B2B" class="btn-outline">聯絡我們<svg class="ic"><use href="#icon-mail"/></svg></a>
     </div>
   </div>
 </section>
@@ -243,5 +288,6 @@
 <script src="ats.js"></script>
 <script src="redflag.js"></script>
 <script src="app.js"></script>
+<script src="dashboard.js"></script>
 </body>
 </html>

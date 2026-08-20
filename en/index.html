@@ -172,6 +172,8 @@
         <option value="us">United States</option>
         <option value="intl">Other</option>
       </select>
+      <button id="btn-coverletter"><svg class="ic"><use href="#icon-mail"/></svg><span data-i18n="btn.coverletter">Cover Letter</span></button>
+      <button id="btn-export"><svg class="ic"><use href="#icon-file-up"/></svg><span data-i18n="btn.export">Export PDF</span></button>
     </div>
     <p class="disclaimer" data-i18n="app.disclaimer">Your resume stays in your browser and is only sent to the API you configure. This tool never scrapes job boards. Verify AI suggestions yourself — never fabricate experience.</p>
   </section>
@@ -185,16 +187,49 @@
   </section>
 </main>
 
+<section id="dashboard">
+  <h2 class="section-title" data-i18n="dash.title">Job Dashboard (data stays in your browser)</h2>
+  <div class="dash-grid">
+    <div class="dash-block">
+      <h3 data-i18n="dash.profiles">Resume Versions</h3>
+      <div class="dash-controls">
+        <select id="profile-select"></select>
+        <input id="profile-name" data-i18n-ph="dash.profilePh" placeholder="Version name, e.g., SWE version">
+      </div>
+      <div class="dash-controls">
+        <button id="btn-profile-save" class="primary small" data-i18n="dash.profileSave">Save current resume as version</button>
+        <button id="btn-profile-load" class="ghost small" data-i18n="dash.profileLoad">Load</button>
+        <button id="btn-profile-delete" class="ghost small" data-i18n="dash.profileDelete">Delete</button>
+      </div>
+    </div>
+    <div class="dash-block">
+      <h3 data-i18n="dash.track">Application Tracker</h3>
+      <div class="dash-controls">
+        <input id="track-company" data-i18n-ph="dash.trackCompany" placeholder="Company">
+        <input id="track-title" data-i18n-ph="dash.trackTitle" placeholder="Job title">
+        <button id="btn-track-add" class="primary small" data-i18n="dash.trackAdd">Add</button>
+      </div>
+      <div id="track-list"></div>
+    </div>
+    <div class="dash-block dash-wide">
+      <h3 data-i18n="dash.compare">Multi-Job Comparison</h3>
+      <p class="hint" data-i18n="dash.compareHint">Check 2-4 history entries; coverage and risk are computed against the CURRENT resume box. Switch resume versions and re-run to see which resume fits which job best.</p>
+      <div id="compare-list"></div>
+      <button id="btn-compare" class="ghost small" data-i18n="dash.compareBtn">Compare selected jobs</button>
+      <div id="compare-result" class="markdown"></div>
+    </div>
+  </div>
+</section>
+
 <section id="pricing">
   <h2 class="section-title">Simple pricing</h2>
-  <p class="section-sub">The free tier is free forever — it runs on your own API key, so we have no server costs and don't need your data.</p>
+  <p class="section-sub">The free tier is free forever with every feature — it runs on your own API key, so we have no server costs. Pro sells convenience and cloud sync, never a crippled free version.</p>
   <div class="pricing-grid">
     <div class="price-card">
       <h3>Free</h3>
       <div class="price">$0<span>/forever</span></div>
       <ul>
-        <li>All four features</li>
-        <li>Unlimited usage</li>
+        <li>All features, unlimited (incl. scam check & dashboard)</li>
         <li>Data stays in your browser</li>
         <li>Bring your own API key (BYOK)</li>
       </ul>
@@ -203,14 +238,24 @@
     <div class="price-card featured">
       <div class="ribbon">Planned</div>
       <h3>Pro Hosted</h3>
-      <div class="price">$4<span>/month</span></div>
+      <div class="price">$9<span>/month</span></div>
       <ul>
-        <li>No setup, no API key needed</li>
-        <li>AI credits included</li>
-        <li>Multi-job comparison view</li>
-        <li>Resume version history</li>
+        <li>No setup, no API key — open and go</li>
+        <li>AI credits included (GLM)</li>
+        <li>Cloud-synced comparison & tracking</li>
+        <li>Priority support</li>
       </ul>
-      <button class="btn-outline" disabled>Coming soon</button>
+      <a href="mailto:yassintw@gmail.com?subject=Pro%20waitlist" class="btn-outline">Join waitlist</a>
+    </div>
+    <div class="price-card">
+      <h3>Job Sprint Pack</h3>
+      <div class="price">$14.99<span>/30 days</span></div>
+      <ul>
+        <li>Full Pro for 30 days, one payment</li>
+        <li>No auto-renewal — ends when your sprint ends</li>
+        <li>Perfect for a 1-2 month application push</li>
+      </ul>
+      <a href="mailto:yassintw@gmail.com?subject=Sprint%20waitlist" class="btn-outline">Join waitlist</a>
     </div>
     <div class="price-card">
       <h3>Teams &amp; Schools</h3>
@@ -220,7 +265,7 @@
         <li>Career fair event plans</li>
         <li>Training &amp; white-label licensing</li>
       </ul>
-      <a href="mailto:yassintw@gmail.com" class="btn-outline">Contact us<svg class="ic"><use href="#icon-mail"/></svg></a>
+      <a href="mailto:yassintw@gmail.com?subject=B2B" class="btn-outline">Contact us<svg class="ic"><use href="#icon-mail"/></svg></a>
     </div>
   </div>
 </section>
@@ -242,5 +287,6 @@
 <script src="../ats.js"></script>
 <script src="../redflag.js"></script>
 <script src="../app.js"></script>
+<script src="../dashboard.js"></script>
 </body>
 </html>
