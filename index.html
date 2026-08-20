@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JobFit AI 求職助手 — 貼上職缺與履歷，30 秒得到匹配分數、缺口分析、履歷改寫與面試準備。不捏造、不上傳、不綁平台。">
+<title>JobFit AI 求職助手 — 投履歷前的最後一關</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
+<symbol id="icon-ban" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M4.929 4.929 19.07 19.071" /></symbol>
+<symbol id="icon-chart-column" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" /></symbol>
+<symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol>
+<symbol id="icon-file-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /><path d="M14 2v5a1 1 0 0 0 1 1h5" /><path d="M12 12v6" /><path d="m15 15-3-3-3 3" /></symbol>
+<symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></symbol>
+<symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol>
+<symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+<symbol id="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></symbol>
+<symbol id="icon-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></symbol>
+<symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /><circle cx="12" cy="12" r="3" /></symbol>
+<symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></symbol>
+<symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></symbol>
+<symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></symbol>
+<symbol id="icon-trash-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 11v6" /><path d="M14 11v6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><svg class="ic ic-logo"><use href="#icon-target"/></svg>JobFit AI</a>
+    <nav class="nav-links">
+      <a href="#features">功能</a>
+      <a href="#app">開始使用</a>
+      <a href="#pricing">定價</a>
+      <a href="faq.html">常見問題</a>
+      <a href="about.html">關於</a>
+    </nav>
+    <div class="header-actions">
+      <button id="btn-lang" class="ghost small" title="Language"><svg class="ic"><use href="#icon-globe"/></svg><span class="lang-label">EN</span></button>
+      <button id="btn-settings" class="ghost small"><svg class="ic"><use href="#icon-settings"/></svg><span data-i18n="settings.button">API 設定</span></button>
+    </div>
+  </div>
+</header>
+
+<dialog id="dlg-settings">
+  <form method="dialog">
+    <h3 data-i18n="settings.title">API 設定</h3>
+    <p class="hint" data-i18n="settings.hint">使用 OpenAI 相容格式（OpenAI、Z.ai GLM、DeepSeek、Groq 等皆可）。金鑰只會存在你的瀏覽器 localStorage，不會上傳到任何地方。</p>
+    <div class="field">
+      <label for="set-endpoint" data-i18n="settings.endpoint">API 端點</label>
+      <input id="set-endpoint" placeholder="https://api.openai.com/v1">
+    </div>
+    <div class="field">
+      <label for="set-key" data-i18n="settings.key">API Key</label>
+      <input id="set-key" type="password" placeholder="sk-...">
+    </div>
+    <div class="field">
+      <label for="set-model" data-i18n="settings.model">模型名稱</label>
+      <input id="set-model" placeholder="gpt-4o-mini">
+    </div>
+    <div class="dialog-actions">
+      <button type="button" id="btn-test" class="ghost" data-i18n="settings.test">測試連線</button>
+      <span id="test-status"></span>
+      <button type="submit" class="primary" id="btn-save-settings" data-i18n="settings.save">儲存</button>
+    </div>
+  </form>
+</dialog>
+
+<section id="hero">
+  <h1 data-i18n="hero.title">投履歷前的最後一關</h1>
+  <p class="hero-sub" data-i18n="hero.sub">用職缺的角度，先替面試官審一次你的履歷。貼上職缺與履歷，30 秒得到匹配分數、缺口分析、改寫建議與面試題。</p>
+  <div class="hero-steps">
+    <div class="step"><span class="num">1</span><span data-i18n="hero.step1">貼上職缺描述（JD）</span></div>
+    <div class="step"><span class="num">2</span><span data-i18n="hero.step2">貼上你的履歷</span></div>
+    <div class="step"><span class="num">3</span><span data-i18n="hero.step3">得到分數與改善清單</span></div>
+  </div>
+  <div class="hero-badges">
+    <span class="badge"><svg class="ic"><use href="#icon-ban"/></svg><span data-i18n="hero.badge1">不捏造經歷</span></span>
+    <span class="badge"><svg class="ic"><use href="#icon-lock"/></svg><span data-i18n="hero.badge2">資料不出瀏覽器</span></span>
+    <span class="badge"><svg class="ic"><use href="#icon-repeat"/></svg><span data-i18n="hero.badge3">匹配 → 改寫 → 面試一條龍</span></span>
+  </div>
+  <a href="#app" class="hero-cta primary">立即開始<svg class="ic"><use href="#icon-arrow-right"/></svg></a>
+</section>
+
+<section id="features">
+  <h2 class="section-title">一次搞定投遞前的準備</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg class="ic"><use href="#icon-chart-column"/></svg></div>
+      <h3>匹配度分析</h3>
+      <p>總分 X/100、優勢、缺口與補強建議、職缺重視但履歷沒提的關鍵字，一次看清你與職缺的距離。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg class="ic"><use href="#icon-sparkles"/></svg></div>
+      <h3>履歷客製</h3>
+      <p>針對特定職缺改寫履歷：調整段落順序與措辭，對齊職缺語言。鐵則——絕不捏造任何經歷。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg class="ic"><use href="#icon-mic"/></svg></div>
+      <h3>模擬面試題</h3>
+      <p>從 JD 與你的履歷推測 10 題高機率面試題，附答題方向、弱點應對話術與反問公司的問題。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg class="ic"><use href="#icon-shield-check"/></svg></div>
+      <h3>ATS 格式健檢</h3>
+      <p>本機運算、免費、不需 API：檢查聯絡資訊、標準區塊、量化成果與職缺關鍵字覆蓋率，降低被系統誤判的風險。</p>
+    </div>
+  </div>
+</section>
+
+<main id="app">
+  <aside id="history-panel">
+    <h3 data-i18n="history.title">分析記錄</h3>
+    <ul id="history-list"></ul>
+    <button id="btn-clear-history" class="ghost small"><svg class="ic"><use href="#icon-trash-2"/></svg><span data-i18n="history.clear">清除全部記錄</span></button>
+  </aside>
+
+  <section id="editor">
+    <div class="field">
+      <label for="job-title" data-i18n="app.jobTitle">職缺名稱</label>
+      <input id="job-title" data-i18n-ph="app.jobTitlePh" placeholder="例如：前端工程師（某科技公司）">
+    </div>
+    <div class="field">
+      <label for="jd" data-i18n="app.jd">職缺描述（JD）</label>
+      <textarea id="jd" rows="10" data-i18n-ph="app.jdPh" placeholder="從求職網站複製貼上：工作內容、需求技能、加分條件…"></textarea>
+    </div>
+    <div class="field">
+      <label for="resume"><span data-i18n="app.resume">你的履歷</span> <span class="hint"><svg class="ic ic-sm"><use href="#icon-file-up"/></svg> <span data-i18n="app.resumeHint">貼上文字，或上傳 .txt / .md 檔</span></span></label>
+      <textarea id="resume" rows="12" data-i18n-ph="app.resumePh" placeholder="學經歷、技能、作品、證照…"></textarea>
+      <input type="file" id="resume-file" accept=".txt,.md,.markdown,text/plain,text/markdown">
+    </div>
+    <div class="actions">
+      <button class="primary" id="btn-analyze"><svg class="ic"><use href="#icon-chart-column"/></svg><span data-i18n="btn.analyze">分析匹配度</span></button>
+      <button id="btn-tailor"><svg class="ic"><use href="#icon-sparkles"/></svg><span data-i18n="btn.tailor">客製履歷</span></button>
+      <button id="btn-interview"><svg class="ic"><use href="#icon-mic"/></svg><span data-i18n="btn.interview">模擬面試題</span></button>
+      <button id="btn-ats"><svg class="ic"><use href="#icon-shield-check"/></svg><span data-i18n="btn.ats">ATS 格式健檢</span></button>
+    </div>
+    <p class="disclaimer" data-i18n="app.disclaimer">履歷只存在你的瀏覽器，僅送至你自行設定的 API。本工具不爬取任何求職網站。AI 建議請自行核實，切勿虛構經歷。</p>
+  </section>
+
+  <section id="result" hidden>
+    <div class="result-header">
+      <h2 id="result-title"></h2>
+      <button id="btn-copy" class="ghost small"><svg class="ic"><use href="#icon-copy"/></svg><span data-i18n="app.copy">複製結果</span></button>
+    </div>
+    <div id="result-content" class="markdown"></div>
+  </section>
+</main>
+
+<section id="pricing">
+  <h2 class="section-title">簡單的定價</h2>
+  <p class="section-sub">免費版永久免費——因為它使用你自己的 API 金鑰，我們沒有伺服器成本，也不需要你的資料。</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>免費版</h3>
+      <div class="price">NT$0<span>/永久</span></div>
+      <ul>
+        <li>全部四項功能</li>
+        <li>無限次使用</li>
+        <li>資料只存在你的瀏覽器</li>
+        <li>使用你自己的 API 金鑰（BYOK）</li>
+      </ul>
+      <a href="#app" class="btn-outline">立即開始</a>
+    </div>
+    <div class="price-card featured">
+      <div class="ribbon">規劃中</div>
+      <h3>Pro 託管版</h3>
+      <div class="price">NT$129<span>/月</span></div>
+      <ul>
+        <li>免設定、免 API 金鑰</li>
+        <li>AI 額度由我們提供</li>
+        <li>多職缺比較視圖</li>
+        <li>履歷版本管理</li>
+      </ul>
+      <button class="btn-outline" disabled>即將推出</button>
+    </div>
+    <div class="price-card">
+      <h3>團隊與學校</h3>
+      <div class="price">客製<span>/方案</span></div>
+      <ul>
+        <li>職涯中心批量使用</li>
+        <li>就業博覽會活動方案</li>
+        <li>企業內訓與白標授權</li>
+      </ul>
+      <a href="mailto:yassintw@gmail.com" class="btn-outline">聯絡我們<svg class="ic"><use href="#icon-mail"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="ic"><use href="#icon-target"/></svg> JobFit AI</div>
+    <nav class="footer-links">
+      <a href="about.html">關於我們</a>
+      <a href="faq.html">常見問題</a>
+      <a href="privacy.html">隱私權政策</a>
+      <a href="terms.html">服務條款</a>
+    </nav>
+    <div class="footer-note">© 2026 JobFit AI — 履歷只留在你的瀏覽器。圖示：Lucide（ISC 授權）。</div>
+  </div>
+</footer>
+
+<script src="ats.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

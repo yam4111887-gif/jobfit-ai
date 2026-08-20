@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常見問題 — JobFit AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><svg class="ic ic-logo"><use href="#icon-target"/></svg>JobFit AI</a>
+    <nav class="nav-links">
+      <a href="index.html#app">回到工具</a>
+      <a href="index.html#pricing">定價</a>
+      <a href="about.html">關於</a>
+      <a href="privacy.html">隱私權政策</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <h1>常見問題</h1>
+
+  <div class="faq-item">
+    <h3>需要付費嗎？</h3>
+    <p>不需要。免費版包含全部功能、無限次使用，原理是你使用自己的 API 金鑰（BYOK），我們沒有伺服器成本，所以能永久免費。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>一定要有 API 金鑰嗎？</h3>
+    <p>AI 三項功能（匹配分析、履歷客製、面試題）需要。你可以到 OpenAI、Z.ai、DeepSeek 等平台申請，多數有免費額度。「ATS 格式健檢」完全本機運算，不需要任何金鑰。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>我的履歷會被上傳或儲存到你們的伺服器嗎？</h3>
+    <p>不會。我們沒有伺服器。履歷只存在你瀏覽器的 localStorage；AI 分析時，內容直接從你的瀏覽器送往「你自己設定」的 API 端點。詳見隱私權政策。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>跟直接用 ChatGPT 問有什麼不同？</h3>
+    <p>ChatGPT 什麼都能做，但你要自己會問、每次重貼、結果散在對話裡。這裡是產品化的流程：固定的分析結構（分數、優勢、缺口、關鍵字）、可回顧的記錄、反捏造的改寫原則，加上本機的 ATS 健檢。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>跟 Cake、Teal 這類服務的差別？</h3>
+    <p>三個關鍵差異：不綁平台（貼什麼履歷都行，不用把履歷搬進我們的系統）；免費無限次（同類服務多為每月限次或月費）；匹配 → 改寫 → 面試一條龍（多數服務只做其中一段）。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>ATS 分數高，就一定會通過企業的篩選系統嗎？</h3>
+    <p>不一定，誠實說：履歷被刷掉的主因是資歷不符與關鍵字不足，格式只佔少數。格式健檢幫你排除「因為格式被誤判」的風險，內容面的匹配請再用「分析匹配度」深入檢視。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>支援英文嗎？</h3>
+    <p>工具介面與 AI 輸出支援中英切換（右上角按鈕），中文分析採用台灣求職文化的角度。英文版網站內容陸續上線中。</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>AI 會不會捏造我沒有的經歷？</h3>
+    <p>改寫功能有明確的系統級禁令：只能重新組織、調整用字與排序，不能新增你沒有的學經歷、職稱、數字或證照。但我們仍建議你逐行檢查產出結果——這也是面試前最好的複習。</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="ic"><use href="#icon-target"/></svg> JobFit AI</div>
+    <nav class="footer-links">
+      <a href="about.html">關於我們</a>
+      <a href="faq.html">常見問題</a>
+      <a href="privacy.html">隱私權政策</a>
+      <a href="terms.html">服務條款</a>
+    </nav>
+    <div class="footer-note">© 2026 JobFit AI — 履歷只留在你的瀏覽器。圖示：Lucide（ISC 授權）。</div>
+  </div>
+</footer>
+</body>
+</html>
