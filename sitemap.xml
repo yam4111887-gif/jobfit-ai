@@ -15,16 +15,52 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/resume-examples.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/resume-examples.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/resume-examples.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/resume-examples.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/resume-examples.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/resume-examples.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/ats-resume.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/ats-resume.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/ats-resume.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/ats-resume.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/ats-resume.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/ats-resume.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/resume-example-software-engineer.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/resume-example-fresh-graduate.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/resume-example-career-change.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://yam4111887-gif.github.io/jobfit-ai/faq.html</loc>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/faq.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/faq.html"/>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yam4111887-gif.github.io/jobfit-ai/en/faq.html</loc>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/faq.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/faq.html"/>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yam4111887-gif.github.io/jobfit-ai/about.html</loc>
