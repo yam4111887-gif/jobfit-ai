@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — JobFit AI | BYOK, ATS, Privacy, and How It Compares</title>
+<meta name="description" content="Answers to common questions about JobFit AI: pricing, API keys, data privacy, how it differs from ChatGPT / Cake / Teal, and what an ATS score really means.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yam4111887-gif.github.io/jobfit-ai/en/faq.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/faq.html">
+<link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/faq.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FAQ — JobFit AI">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is it really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free tier includes all features with unlimited usage — it runs on your own API key (BYOK), so we have no server costs and can stay free forever." } },
+    { "@type": "Question", "name": "Do I need an API key?", "acceptedAnswer": { "@type": "Answer", "text": "The three AI features (match analysis, resume tailoring, mock interview) need one. You can get a key from OpenAI, Z.ai, DeepSeek and others — most offer free tiers. The ATS format check runs locally and needs no key." } },
+    { "@type": "Question", "name": "Is my resume uploaded to your servers?", "acceptedAnswer": { "@type": "Answer", "text": "No. We have no servers. Your resume stays in your browser's localStorage; during AI analysis, content goes directly from your browser to the API endpoint you configure. See the privacy policy." } },
+    { "@type": "Question", "name": "How is this different from just using ChatGPT?", "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT can do this, but you must know what to ask, re-paste everything each time, and results get lost in conversations. Here it's a productized flow: a fixed analysis structure (score, strengths, gaps, keywords), reviewable history, a strict no-fabrication rewriting rule, plus a local ATS check." } },
+    { "@type": "Question", "name": "Does a high ATS score guarantee passing screening?", "acceptedAnswer": { "@type": "Answer", "text": "Honestly, no. Resumes are rejected mostly for missing qualifications and keywords; formatting is a smaller factor. The format check removes the 'misread by the parser' risk; for content-level fit, use the match analysis." } },
+    { "@type": "Question", "name": "Will the AI fabricate experience I don't have?", "acceptedAnswer": { "@type": "Answer", "text": "The rewrite feature has an explicit system-level prohibition: it may only reorganize, reword, and reorder — never add education, titles, numbers, or certificates you don't have. We still recommend reviewing every line, which is also the best interview prep." } }
+  ]
+}
+</script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><svg class="ic ic-logo"><use href="#icon-target"/></svg>JobFit AI</a>
+    <nav class="nav-links">
+      <a href="index.html#app">Back to Tool</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="../faq.html">中文</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <h1>FAQ</h1>
+
+  <div class="faq-item">
+    <h3>Is it really free?</h3>
+    <p>Yes. The free tier includes all features with unlimited usage — it runs on your own API key (BYOK), so we have no server costs and can stay free forever.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Do I need an API key?</h3>
+    <p>The three AI features (match analysis, resume tailoring, mock interview) need one. You can get a key from OpenAI, Z.ai, DeepSeek and others — most offer free tiers. The ATS format check runs locally and needs no key.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Is my resume uploaded to your servers?</h3>
+    <p>No. We have no servers. Your resume stays in your browser's localStorage; during AI analysis, content goes directly from your browser to the API endpoint you configure. See the privacy policy.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How is this different from just using ChatGPT?</h3>
+    <p>ChatGPT can do this, but you must know what to ask, re-paste everything each time, and results get lost in conversations. Here it's a productized flow: a fixed analysis structure (score, strengths, gaps, keywords), reviewable history, a strict no-fabrication rewriting rule, plus a local ATS check.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How does it compare to Cake, Teal, and similar services?</h3>
+    <p>Three key differences: no platform lock-in (paste any resume — you don't have to rebuild it inside our system); free and unlimited (similar services limit free uses or charge monthly); and an all-in-one flow from match to rewrite to interview prep (most services cover only one part).</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Does a high ATS score guarantee passing screening systems?</h3>
+    <p>Honestly, no. Resumes are rejected mostly for missing qualifications and keywords; formatting is a smaller factor. The format check removes the "misread by the parser" risk; for content-level fit, use the match analysis.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Is Chinese supported?</h3>
+    <p>Yes — the tool interface and AI output support Traditional Chinese and English (toggle in the header). Chinese analysis uses a Taiwan job-market lens. This English site is new; more content is on the way.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Will the AI fabricate experience I don't have?</h3>
+    <p>The rewrite feature has an explicit system-level prohibition: it may only reorganize, reword, and reorder — never add education, titles, numbers, or certificates you don't have. We still recommend reviewing every line, which is also the best interview prep.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><svg class="ic"><use href="#icon-target"/></svg> JobFit AI</div>
+    <nav class="footer-links">
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
+    <div class="footer-note">© 2026 JobFit AI — Your resume never leaves your browser. Icons: Lucide (ISC license).</div>
+  </div>
+</footer>
+</body>
+</html>

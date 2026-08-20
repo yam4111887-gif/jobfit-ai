@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yam4111887-gif.github.io/jobfit-ai/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yam4111887-gif.github.io/jobfit-ai/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/faq.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/faq.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/about.html"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/about.html"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/privacy.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/privacy.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/terms.html"/>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://yam4111887-gif.github.io/jobfit-ai/en/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://yam4111887-gif.github.io/jobfit-ai/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yam4111887-gif.github.io/jobfit-ai/en/terms.html"/>
+    <priority>0.3</priority>
+  </url>
+</urlset>

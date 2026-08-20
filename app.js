@@ -109,6 +109,12 @@ function t(key) {
 }
 
 function loadLang() {
+  /* 頁面本身宣告語系時（/en/ 目錄下的頁面），以頁面為準並同步偏好設定 */
+  const pageLang = document.body.getAttribute("data-page-lang");
+  if (pageLang === "en" || pageLang === "zh") {
+    localStorage.setItem(LANG_KEY, pageLang);
+    return pageLang;
+  }
   const saved = localStorage.getItem(LANG_KEY);
   return saved === "en" || saved === "zh" ? saved : "zh";
 }
@@ -466,11 +472,13 @@ els.btnTailor.addEventListener("click", () => runTask("tailor"));
 els.btnInterview.addEventListener("click", () => runTask("interview"));
 els.btnAts.addEventListener("click", () => runAtsCheck());
 
-els.btnLang.addEventListener("click", () => {
-  applyLang(loadLang() === "zh" ? "en" : "zh");
-  renderHistory();
-});
-
+/* 語言切換：index 的切換器是連到 /en/ 的連結（由導覽處理）；僅按鈕形式時才就地切換 */
+if (els.btnLang && els.btnLang.tagName === "BUTTON") {
+  els.btnLang.addEventListener("click", () => {
+    applyLang(loadLang() === "zh" ? "en" : "zh");
+    renderHistory();
+  });
+}
 els.resumeFile.addEventListener("change", async () => {
   const file = els.resumeFile.files[0];
   if (!file) return;
